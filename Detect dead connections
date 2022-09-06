@@ -1,0 +1,1 @@
+1..254 | % {"172.20.54.$($_): $(Test-Connection -count 1 -comp 172.20.54.$($_) -quiet)"} | Select-String -Pattern "false" > "results_for_54_subnet.txt"
