@@ -1,0 +1,9 @@
+$baseIP = "172.20"
+53..54 | ForEach-Object {
+    [string]$Subnet = $_ 
+    $Sub_IP= $baseIP + "." + $Subnet
+    1..254 | ForEach-Object {
+        $IP = $Sub_IP + "." + [string] $_
+        "Testing Connection $IP : $(Test-Connection -count 1 -comp $($IP) -quiet)" | Select-String -Pattern "false" 
+    } > result_subnet_$Subnet.txt
+} 
